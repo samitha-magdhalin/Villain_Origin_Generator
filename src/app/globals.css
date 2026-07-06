@@ -1,26 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Permanent+Marker&display=swap');
+
 @import "tailwindcss";
 
+@theme {
+  --font-bangers: "Bangers", cursive;
+  --font-comic: "Comic Neue", cursive;
+  --font-marker: "Permanent Marker", cursive;
+
+  --color-comic-yellow: #ffe600;
+  --color-comic-orange: #ff6600;
+  --color-comic-pink: #ff007f;
+  --color-comic-cyan: #00f0ff;
+  --color-comic-dark: #0f111a;
+  --color-comic-card-dark: #191c2c;
+  --color-comic-purple: #6366f1;
+  --color-comic-border: #000000;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #0f111a;
+  --foreground: #ffffff;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-comic), sans-serif;
+  overflow-x: hidden;
+}
+
+/* Comic UI Utilities */
+.comic-panel {
+  border: 4px solid #000000;
+  background-color: var(--color-comic-card-dark);
+  box-shadow: 6px 6px 0px 0px #000000;
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.comic-panel-interactive:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px 0px #000000;
+}
+
+.comic-panel-interactive:active {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0px 0px #000000;
+}
+
+/* Halftone Backgrounds */
+.bg-halftone-dark {
+  background-color: #0c0e17;
+  background-image: radial-gradient(rgba(255, 0, 127, 0.1) 15%, transparent 16%),
+                    radial-gradient(rgba(255, 0, 127, 0.1) 15%, transparent 16%);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
+}
+
+.bg-halftone-light {
+  background-color: #ffe600;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.1) 15%, transparent 16%),
+                    radial-gradient(rgba(0, 0, 0, 0.1) 15%, transparent 16%);
+  background-size: 12px 12px;
+  background-position: 0 0, 6px 6px;
+}
+
+.bg-halftone-pink {
+  background-color: #ff007f;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.12) 15%, transparent 16%),
+                    radial-gradient(rgba(0, 0, 0, 0.12) 15%, transparent 16%);
+  background-size: 12px 12px;
+  background-position: 0 0, 6px 6px;
+}
+
+/* Comic Text Shadows */
+.comic-text-shadow {
+  text-shadow: 2px 2px 0px #000000, 
+               -1px -1px 0px #000000, 
+               1px -1px 0px #000000, 
+               -1px 1px 0px #000000,
+               4px 4px 0px rgba(0, 0, 0, 0.8);
+}
+
+.comic-text-shadow-sm {
+  text-shadow: 1px 1px 0px #000000, 
+               -1px -1px 0px #000000, 
+               1px -1px 0px #000000, 
+               -1px 1px 0px #000000,
+               2px 2px 0px rgba(0, 0, 0, 1);
+}
+
+.comic-text-stroke {
+  text-shadow: 2px 2px 0px #000000, 
+               -2px -2px 0px #000000, 
+               2px -2px 0px #000000, 
+               -2px 2px 0px #000000;
+}
+
+/* Speech Bubble Tail */
+.speech-bubble-tail {
+  position: absolute;
+  bottom: -15px;
+  left: 30px;
+  width: 0;
+  height: 0;
+  border-width: 15px 15px 0 0;
+  border-style: solid;
+  border-color: #000000 transparent transparent transparent;
+}
+
+.speech-bubble-tail-inner {
+  position: absolute;
+  bottom: -8px;
+  left: 30px;
+  width: 0;
+  height: 0;
+  border-width: 10px 10px 0 0;
+  border-style: solid;
+  border-color: #ffffff transparent transparent transparent;
+}
+
+/* Custom sound effects animations */
+@keyframes shake {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg) scale(1.05); }
+}
+
+.animate-comic-shake {
+  animation: shake 0.4s infinite alternate ease-in-out;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.9) rotate(-3deg); }
+  50% { transform: scale(1.1) rotate(3deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.animate-comic-pop {
+  animation: pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Torn paper edge simulation using SVG clips */
+.comic-card-mask {
+  clip-path: polygon(2% 0%, 98% 1%, 100% 4%, 99% 95%, 97% 100%, 3% 99%, 0% 96%, 1% 3%);
 }

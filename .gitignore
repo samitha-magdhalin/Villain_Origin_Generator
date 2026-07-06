@@ -1,4 +1,28 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+node_modules/
+.next/
+out/
+build/
+dist/
+.turbo/
+coverage/
+/.pnp
+/.pnp.js
+.env
+.env.local
+.env.*.local
+.vercel
+.cache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-lock.yaml
+package-lock.json
+.DS_Store
+.idea/
+.vscode/
+*.log
+/.sass-cache
+*.local# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
 /node_modules
