@@ -2,7 +2,7 @@
 
 Paste any WhatsApp chat, Twitter bio, or upload a chat screenshot — AI generates a comic-book supervillain origin story based on your texting patterns. Pure meme fuel, built to be screenshotted.
 
-Built by [CodeLife Chronicles](https://instagram.com/codelifechronicles) 🎬
+Live Link: https://villainorigingenerator.vercel.app/
 
 ---
 
@@ -103,10 +103,8 @@ Create a `villains` table:
 ### 4. Run locally
 ```bash
 npm run dev
-```
 
-### 5. Deploy
-Push to GitHub, import the repo in Vercel, add the same env vars in the Vercel dashboard, deploy.
+
 
 ---
 
